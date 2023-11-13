@@ -1,6 +1,13 @@
 import logo from './logo.svg';
 import './App.scss';
 
+/**
+ * 2 components: class components / function components (function , arrow)
+ * 
+ */
+
+
+
 function App() {
   return (
     <div className="App">
