@@ -3,6 +3,14 @@ import ChildComponent from "./ChildComponent";
 import AddComponents from "./AddComponents";
 
 class MyComponent extends React.Component {
+
+    componentDidUpdate = (prevProps, prevState) => {
+        console.log(">>> run didupdate: ", 'prevState', prevState, ' current state: ', this.state)
+    }
+
+    componentDidMount = () => {
+        console.log(">>> run components did mount")
+    }
     /*
     JFX => return 1 block hay 1 div
     Nếu muốn nhiều hơn 1 div ta dùng <> div1 div2 </>
@@ -19,6 +27,19 @@ class MyComponent extends React.Component {
         this.setState({
             arrJobs: [...this.state.arrJobs, job]
         })
+        // let currenJob = this.state.arrJobs;
+        // currenJob.push(job)
+        // this.setState({
+        //     arrJobs: currenJob
+        // })
+    }
+
+    deleteAJob = (job) => {
+        let currenJob = this.state.arrJobs;
+        currenJob = currenJob.filter(item => item.id !== job.id)
+        this.setState({
+            arrJobs: currenJob
+        })
     }
 
     render() {
@@ -28,7 +49,9 @@ class MyComponent extends React.Component {
                     addNewJob={this.addNewJob}
                 />
                 <ChildComponent
-                    arrJobs={this.state.arrJobs} />
+                    arrJobs={this.state.arrJobs}
+                    deleteAJob={this.deleteAJob}
+                />
             </>
         )
     }
